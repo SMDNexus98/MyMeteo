@@ -1,0 +1,10 @@
+<div *ngIf="!!forecastCity.city">
+    <app-city-card [meteoInfo]="forecastCity.list[range]" [fullInfo]="true"></app-city-card>
+    <div class="p-4">
+        <label for="rangeWeather" class="form-label">
+            <h3><b>Date</b></h3>
+        </label>
+        <input type="range" [(ngModel)]="range" class="form-range" min="0"
+            [max]="forecastCity.list?.length ? (forecastCity.list.length - 1) : 0" id="rangeWeather">
+    </div>
+</div>

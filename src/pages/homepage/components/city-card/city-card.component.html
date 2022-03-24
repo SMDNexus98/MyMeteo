@@ -1,0 +1,24 @@
+<div (click)="onClickCity.emit(meteoInfo)" *ngIf="!!meteoInfo?.name" class="card text-white mb-3 border-0"
+  [ngClass]="fullInfo ? 'my-card-full' : 'my-card-small'">
+  <div backgroundWeather [iconName]="meteoInfo.weather[0].icon" [onHoverEffect]="!fullInfo" class="card-body"
+    style="transition: all 200ms ease 0s;">
+    <div class="row">
+      <div [title]="meteoInfo.name" class="col-8 d-inline-block text-truncate text-start"><b>{{meteoInfo.name}}</b>
+      </div>
+      <div class="col-4 text-end"><b>{{meteoInfo.sys.country}}</b></div>
+    </div>
+
+    <div class="row">
+      <div class="col-12 text-center"><h3>{{meteoInfo.dt_txt}}</h3><b></b></div>
+    </div>
+
+    <img style="display: block;" class="m-auto" [style.width]="fullInfo ? '' : '100%'"
+      [src]="'https://openweathermap.org/img/wn/'+ meteoInfo.weather[0].icon +'@4x.png'" alt="">
+    <h3 class="card-title text-center">{{meteoInfo.main.temp |toCelsius}}</h3>
+    <h5 class="card-text text-center">{{meteoInfo.weather[0].description |titlecase}}</h5>
+    <div class="row mt-4">
+      <div class="col-6 text-start">Min: {{meteoInfo.main.temp_min |toCelsius}}</div>
+      <div class="col-6 text-end">Max: {{meteoInfo.main.temp_max |toCelsius}}</div>
+    </div>
+  </div>
+</div>

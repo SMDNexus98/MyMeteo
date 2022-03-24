@@ -1,0 +1,8 @@
+<h1 class="text-center bg-dark text-light p-2">Welcome in MyMeteo.it</h1>
+<div>
+    <div class="text-center">
+        <ng-container *ngFor="let city of citys">
+            <app-city-card class="m-2 d-inline-block" [city]="city" (onClickCity)="onClickCity($event)"></app-city-card>
+        </ng-container>
+    </div>
+</div>
