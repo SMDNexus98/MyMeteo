@@ -22,6 +22,7 @@ export class PaginatorComponent implements OnChanges {
   }
 
   configPaginator() {
+    this.pageSelected = 1;
     this.pages = Math.ceil(this.config.total / this.config.pageLimit);
     if (this.pages > 99)
       this.pages = 99;
@@ -39,8 +40,10 @@ export class PaginatorComponent implements OnChanges {
   }
 
   onClickPage(page: number) {
-    this.pageSelected = page;
-    this.onChangePage.emit(this.pageSelected);
+    if (this.pageSelected != page) {
+      this.pageSelected = page;
+      this.onChangePage.emit(this.pageSelected);
+    }
   }
 
   createPages(i: number) {

@@ -1,9 +1,9 @@
-import { Component, Input, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, SimpleChanges, ViewChild } from '@angular/core';
 import { BusinessService } from '../../services/business.service';
 import { Coord } from '../../pages/homepage/components/city-card/om/meteo-info.model';
 import { Business } from './om/business.model';
-import { PaginatorConfig } from '../paginator/paginator.component';
-import { Subject } from 'rxjs';
+import { PaginatorComponent, PaginatorConfig } from '../paginator/paginator.component';
+import { Subject, timer } from 'rxjs';
 
 @Component({
   selector: 'app-business-city',
@@ -13,49 +13,71 @@ import { Subject } from 'rxjs';
 export class BusinessCityComponent implements OnChanges, OnDestroy {
   @Input() coord: Coord;
 
+  @ViewChild('paginator') paginator: PaginatorComponent;
+
   businesses: Array<Business> = new Array<Business>();
   configPaginator: PaginatorConfig;
 
   searchTerm$ = new Subject<string>();
   searchTerm: string = '';
 
-  limit: number = 50;
-
-  constructor(private businessService: BusinessService) { }
+  constructor(private businessService: BusinessService) {
+    this.businessService.limit = 50;
+    this.businessService.offSet = 0;
+  }
 
 
   ngOnChanges(changes: SimpleChanges): void {
     if (!!changes['coord'] && !!changes['coord'].currentValue) {
       this.coord = changes['coord'].currentValue;
-      this.getBusiness(this.limit);
+      this.getBusiness();
       this.subscribe();
     }
   }
 
   subscribe() {
-    this.businessService.search(this.searchTerm$, this.coord, this.limit)
+    this.businessService.search(this.searchTerm$, this.coord)
       .subscribe(res => {
         this.businessService.loading = false
         this.businesses = res.businesses;
-        this.configPaginator = { pageLimit: this.limit, total: res.total };
+        this.resetPaginator(res.total);
       });
   }
 
-  getBusiness(limit?: number, offSet?: number) {
+  getBusiness() {
     this.businessService.loading = true;
-    this.businessService.getBusiness(this.coord, limit, offSet).subscribe(
-      (res) => {
+    this.businessService.getBusiness(this.coord).subscribe({
+      next: (res) => {
         this.businesses = res.businesses;
-        this.configPaginator = { pageLimit: this.limit, total: res.total };
         this.businessService.loading = false;
-      }, (error) => {
+        this.resetPaginator(res.total);
+      },
+      error: (error) => {
         console.log(error);
         this.businessService.loading = false;
-      });
+      }
+    });
   }
 
-  onChangePage(currentPage: number) {
-    this.getBusiness(this.limit, ((currentPage * 10) - 10));
+  onChangePage(currentPage: number, searchBox: HTMLInputElement) {
+    this.businessService.offSet = ((currentPage * 10) - 10);
+    if (!!searchBox && !!searchBox.value) {
+      this.searchTerm$.next(searchBox.value);
+    } else {
+      this.getBusiness();
+    }
+  }
+
+  onChangeInputSearch(event: string) {
+    this.searchTerm$.next(event);
+    this.businessService.offSet = 0;
+  }
+
+  resetPaginator(total: number) {
+    const newConfigPaginator = { pageLimit: this.businessService.limit, total: total };
+    if (JSON.stringify(newConfigPaginator) != JSON.stringify(this.configPaginator)) {
+      this.configPaginator = newConfigPaginator;
+    }
   }
 
   goToLink(url: string) {
@@ -69,7 +91,7 @@ export class BusinessCityComponent implements OnChanges, OnDestroy {
   ngOnDestroy(): void {
     try {
       this.searchTerm$.unsubscribe();
-    } catch (error) {}
+    } catch (error) { }
   }
 
 }

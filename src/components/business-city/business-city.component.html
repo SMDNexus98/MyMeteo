@@ -1,7 +1,7 @@
 <div class="form-group row w-100 m-0 mb-4 mt-2 justify-content-end">
     <div class="col-md-4 p-2">
         <label for="search-box"><b>Cerca:</b></label>
-        <input [ngModel]="searchTerm" (ngModelChange)="this.searchTerm$.next($event);" type="text" class="form-control" id="search-box" placeholder="Pizzeria">
+        <input #searchbox [ngModel]="searchTerm" (ngModelChange)="onChangeInputSearch($event)" type="text" class="form-control" id="search-box" placeholder="Pizzeria">
     </div>
 </div>
 
@@ -30,5 +30,5 @@
         <h3>Nessun elemento da mostrare!</h3>
     </div>
     
-    <app-paginator *ngIf="businesses && businesses.length > 0" class="mt-4" [config]= "configPaginator" (onChangePage)="onChangePage($event)"></app-paginator>
+    <app-paginator #paginator *ngIf="businesses && businesses.length > 0" class="mt-4" [config]= "configPaginator" (onChangePage)="onChangePage($event, searchbox)"></app-paginator>
 </div>

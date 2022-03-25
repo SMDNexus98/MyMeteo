@@ -13,8 +13,8 @@
                     </ng-container>
                 </div>
 
-                <li class="page-item">
-                    <a class="page-link cursor-pointer" [ngClass]="{'disabled' : pageSelected >= pages}" (click)="next()">Next</a>
+                <li [ngClass]="{'disabled' : pageSelected >= pages}" class="page-item">
+                    <a class="page-link cursor-pointer" (click)="next()">Next</a>
                 </li>
             </ul>
         </nav>
