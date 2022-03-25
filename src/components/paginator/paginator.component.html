@@ -1,0 +1,22 @@
+<div class="row w-100 m-0">
+    <div class="col-12 p-2">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item" [ngClass]="{'disabled' : pageSelected === 1}">
+                    <a class="page-link cursor-pointer" (click)="prev()">Previous</a>
+                </li>
+                <div class="my-container">
+                    <ng-container *ngFor='let in of createPages(pages) ;let i = index'>
+                        <li class="page-item cursor-pointer">
+                            <a class="page-link" [ngClass]="{'active' : pageSelected === (i+1)}" (click)="onClickPage(i+1)">{{i+1}}</a>
+                        </li>
+                    </ng-container>
+                </div>
+
+                <li class="page-item">
+                    <a class="page-link cursor-pointer" [ngClass]="{'disabled' : pageSelected >= pages}" (click)="next()">Next</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

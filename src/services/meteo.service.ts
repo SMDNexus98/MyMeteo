@@ -12,6 +12,7 @@ import { ForecastCity } from '../pages/weather-city/om/forecast-city.model';
 export class MeteoService {
 
   private token = '&appid='+environment.tokenMeteo;
+  
   private weatherData: string = "https://api.openweathermap.org/data/2.5/weather";
   private weatherGeo: string = "http://api.openweathermap.org/geo/1.0/zip";
   private weatherForecast: string = "http://api.openweathermap.org/data/2.5/forecast"

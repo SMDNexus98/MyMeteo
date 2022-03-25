@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,7 +10,8 @@ import { CityCardComponent } from '../pages/homepage/components/city-card/city-c
 import { CelsiusPipe } from '../pipes/to-celsius.pipe';
 import { BackgroundWeather } from '../directives/background-weather.directive';
 import { WeatherCityComponent } from '../pages/weather-city/weather-city.component';
-import { FormsModule } from '@angular/forms';
+import { BusinessCityComponent } from '../components/business-city/business-city.component';
+import { PaginatorComponent } from '../components/paginator/paginator.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { FormsModule } from '@angular/forms';
     CityCardComponent,
     CelsiusPipe,
     BackgroundWeather,
-    WeatherCityComponent
+    WeatherCityComponent,
+    BusinessCityComponent,
+    PaginatorComponent
   ],
   imports: [
     BrowserModule,

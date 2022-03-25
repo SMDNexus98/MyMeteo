@@ -4,7 +4,9 @@
 
 export const environment = {
   production: false,
-  tokenMeteo: "b661307b75c683a5837b10bb2f24271c"
+  tokenMeteo: "b661307b75c683a5837b10bb2f24271c",
+  clientIdBusiness: "OZB_b8C4KCI41HjgKTBlrw",
+  tokenBusiness: "NgG7cCKpYf8MNE6CYcB1yVPLrbmtucugGDlI0HljYy34rCeV0PtaLnGSEmolSfi9KmpL1qlMxPW8oXSKW-pTRKWckX4jwwV0Ct9C8tUzSSHiJ5TMoUkYs-0nbd48YnYx"
 };
 
 /*
