@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, debounceTime, distinctUntilChanged, finalize, Observable, switchMap } from 'rxjs';
-import { Coord } from 'src/pages/homepage/components/city-card/om/meteo-info.model';
+import { Coord } from '../components/city-card/om/meteo-info.model';
 import { environment } from '../environments/environment';
 
 @Injectable({

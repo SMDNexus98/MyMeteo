@@ -6,8 +6,9 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from '../pages/homepage/homepage.component';
-import { CityCardComponent } from '../pages/homepage/components/city-card/city-card.component';
+import { CityCardComponent } from '../components/city-card/city-card.component';
 import { CelsiusPipe } from '../pipes/to-celsius.pipe';
+import { PrintDistance } from '../pipes/print-distance.pipe';
 import { BackgroundWeather } from '../directives/background-weather.directive';
 import { WeatherCityComponent } from '../pages/weather-city/weather-city.component';
 import { BusinessCityComponent } from '../components/business-city/business-city.component';
@@ -19,6 +20,7 @@ import { PaginatorComponent } from '../components/paginator/paginator.component'
     HomepageComponent,
     CityCardComponent,
     CelsiusPipe,
+    PrintDistance,
     BackgroundWeather,
     WeatherCityComponent,
     BusinessCityComponent,

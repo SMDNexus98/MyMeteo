@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { MeteoService } from '../../../../services/meteo.service';
+import { MeteoService } from '../../services/meteo.service';
 import { MeteoInfo } from './om/meteo-info.model';
 
 @Component({

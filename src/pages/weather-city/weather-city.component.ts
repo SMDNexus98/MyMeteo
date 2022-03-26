@@ -1,8 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { MeteoService } from '../../services/meteo.service';
-import { City } from '../homepage/components/city-card/city-card.component';
-import { MeteoInfo } from '../homepage/components/city-card/om/meteo-info.model';
+import { MeteoInfo } from '../../components/city-card/om/meteo-info.model';
 import { ForecastCity } from './om/forecast-city.model';
 
 @Component({

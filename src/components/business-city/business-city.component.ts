@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnDestroy, SimpleChanges, ViewChild } from '@angular/core';
 import { BusinessService } from '../../services/business.service';
-import { Coord } from '../../pages/homepage/components/city-card/om/meteo-info.model';
+import { Coord } from '../../components/city-card/om/meteo-info.model';
 import { Business } from './om/business.model';
 import { PaginatorComponent, PaginatorConfig } from '../paginator/paginator.component';
 import { Subject, timer } from 'rxjs';
@@ -91,7 +91,7 @@ export class BusinessCityComponent implements OnChanges, OnDestroy {
   ngOnDestroy(): void {
     try {
       this.searchTerm$.unsubscribe();
-    } catch (error) { }
+    } catch (error) { console.log(error) }
   }
 
 }

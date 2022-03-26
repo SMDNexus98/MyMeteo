@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, lastValueFrom, Observable } from 'rxjs';
 import { environment } from '../environments/environment';
-import { Coord, MeteoInfo } from '../pages/homepage/components/city-card/om/meteo-info.model';
-import { City } from '../pages/homepage/components/city-card/city-card.component';
+import { Coord, MeteoInfo } from '../components/city-card/om/meteo-info.model';
+import { City } from '../components/city-card/city-card.component';
 import { ForecastCity } from '../pages/weather-city/om/forecast-city.model';
 
 @Injectable({

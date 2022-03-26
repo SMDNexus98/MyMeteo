@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MeteoService } from 'src/services/meteo.service';
-import { City } from './components/city-card/city-card.component';
-import { MeteoInfo } from './components/city-card/om/meteo-info.model';
+import { City } from '../../components/city-card/city-card.component';
+import { MeteoInfo } from '../../components/city-card/om/meteo-info.model';
 
 @Component({
   selector: 'app-homepage',

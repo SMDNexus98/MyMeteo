@@ -1,4 +1,4 @@
-import { Clouds, Coord, MeteoInfo, Sys, Weather, Wind } from "../../../pages/homepage/components/city-card/om/meteo-info.model";
+import { Coord, MeteoInfo } from "../../../components/city-card/om/meteo-info.model";
 
 export class ForecastCity {
     cod: string;
