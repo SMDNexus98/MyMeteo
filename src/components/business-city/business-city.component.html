@@ -17,11 +17,13 @@
             <img class="card-img-top my-card-business" [src]="business.image_url" alt="Card image cap">
             <div class="card-body">
                 <h5 [title]="business.name" class="card-title text-truncate">{{business.name}}</h5>
-                <p class="card-text text-center">Recensito: {{business.rating}}/5 da {{business.review_count}} persone!</p>
+                <div class="card-text text-center">Recensito: {{business.rating}}/5 da {{business.review_count}} persone!</div>
+                <div class="card-text text-center"><b>{{business.price ? business.price : '--'}}</b></div>
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">{{business.display_phone}}</li>
                 <li [title]="business.location.address1" class="list-group-item text-truncate">{{business.location.address1}}</li>
+                <li class="list-group-item">Distante: {{((business.distance * 0.001) |number: '1.0-2')}}km</li>
             </ul>
         </div>
     </div>

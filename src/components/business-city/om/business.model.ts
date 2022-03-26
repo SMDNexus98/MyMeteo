@@ -14,6 +14,7 @@ export class Business {
     categories: Array<Categories>;
     coordinates: Coordinates;
     location: Location;
+    price: string;
 }
 
 export interface Categories {
