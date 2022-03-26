@@ -14,14 +14,16 @@ export class BusinessService {
   constructor(private http: HttpClient) { }
 
   loading: boolean = false;
+  limit: number;
+  offSet: number;
 
-  public getBusiness(coord: Coord, limit?: number, offSet?: number, textSearch?: string): Observable<any> {
+  public getBusiness(coord: Coord, textSearch?: string): Observable<any> {
     var params: any = {
       latitude: coord.lat,
       longitude: coord.lon
     }
-    if (limit) params.limit = limit;
-    if (offSet) params.offset = offSet;
+    if (this.limit) params.limit = this.limit;
+    if (this.offSet) params.offset = this.offSet;
     if (textSearch) params.term = textSearch;
     const httpOptions = {
       headers: new HttpHeaders({
@@ -32,13 +34,12 @@ export class BusinessService {
     return this.http.get<any>(this.businessPath, httpOptions);
   }
 
-  search(terms: Observable<string>, coord: Coord, limit?: number) {
+  search(terms: Observable<string>, coord: Coord) {
     return terms.pipe(
       debounceTime(400),
-      distinctUntilChanged(),
       switchMap(term => {
         this.loading = true;
-        return this.getBusiness(coord, limit, undefined, term);
+        return this.getBusiness(coord, term);
       }),
       catchError(error => {
         this.loading = false;
